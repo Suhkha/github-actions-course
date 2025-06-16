@@ -1,4 +1,4 @@
-name: Deploy to server 4
+name: Deploy to server 5
 
 on: push
 
@@ -6,8 +6,8 @@ jobs:
   first_job:
     runs-on: ubuntu-latest
     
-    env:
-      NAME: DeLorean
+    outputs:
+      salida: ${{ steps.step_1.outputs.my_variable }}
     
     steps:
       - name: Working dir
@@ -22,6 +22,9 @@ jobs:
     needs: first_job #estamos indicando que para que el segundo job se ejecute sea primero el primer job, hay una dependencia
     runs-on: ubuntu-latest
     
+    env:
+      SALIDA: ${{ needs.first_job_outputs.salida }}
+    
     steps:
       - name: Hello Jess again
-        run: echo "Hello again again"
+        run: echo "$SALIDA"
