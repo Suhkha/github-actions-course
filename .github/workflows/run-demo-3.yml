@@ -1,20 +1,29 @@
-name: Deploy to server 2
+name: Deploy to server 3
 
 on: push
 
 jobs:
   first_job:
     runs-on: ubuntu-latest
-        
+    
+    env:
+    NAME: DeLorean
+    
     steps:
-      - name: Hello Jess
-        run: echo "Hello again"
-  
+      - name: Working dir
+        run: ls -al
+        
+      - name: Action
+        uses: actions/checkout@v4 #quien creo la acción/nombre de la action @ version a usar
+        
+      - name: Working dir after action
+        run: ls -al
+        
   second_job:
     if: ${{ github.ref == 'refs/heads/main'}} # ejecutate siempre y cuando el contexto de la referencia sea main
     needs: first_job #estamos indicando que para que el segundo job se ejecute sea primero el primer job, hay una dependencia
     runs-on: ubuntu-latest
-        
+    
     steps:
       - name: Hello Jess again
         run: echo "Hello again again"
