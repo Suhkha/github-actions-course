@@ -1,0 +1,27 @@
+name: Deploy to server
+
+on: push
+
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+    
+    env:
+      NAME: DeLorean
+    
+    steps:
+      - name: Working dir
+        id: step_1 #para hacer referencia al step
+        run: echo "my_variable=Hello Jess" >> $GITHUB_OUTPUT
+        
+      - name: Obtener mensaje
+        run: echo "${{ steps.step_1.outputs.my_variable }}"
+        
+  second_job:
+    if: ${{ github.ref == 'refs/heads/main'}} # ejecutate siempre y cuando el contexto de la referencia sea main
+    needs: first_job #estamos indicando que para que el segundo job se ejecute sea primero el primer job, hay una dependencia
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Hello Jess again
+        run: echo "Hello again again"
