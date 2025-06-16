@@ -1,0 +1,20 @@
+name: Deploy to server
+
+on: push
+
+jobs:
+	first_job:
+		runs-on: ubuntu-latest
+
+		steps:
+			- name: Hello Jess
+			run: echo "Hello again"
+
+	second_job:
+		if: false # le estamos diciendo que no se ejecute
+		needs: first_job #estamos indicando que para que el segundo job se ejecute sea primero el primer job, hay una dependencia
+		runs-on: ubuntu-latest
+
+		steps:
+			- name: Hello Jess again
+			run: echo "Hello again again"
