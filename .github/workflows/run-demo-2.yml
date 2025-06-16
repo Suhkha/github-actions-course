@@ -11,7 +11,7 @@ jobs:
         run: echo "Hello again"
   
   second_job:
-    if: ${{ github.ref == 'ref/heads/main'}} # ejecutate siempre y cuando el contexto de la referencia sea main
+    if: ${{ github.ref == 'refs/heads/main'}} # ejecutate siempre y cuando el contexto de la referencia sea main
     needs: first_job #estamos indicando que para que el segundo job se ejecute sea primero el primer job, hay una dependencia
     runs-on: ubuntu-latest
         
