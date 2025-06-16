@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-    NAME: DeLorean
+      NAME: DeLorean
     
     steps:
       - name: Working dir
